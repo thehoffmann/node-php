@@ -10,7 +10,8 @@ function runPHP(req, response, next, phpdir){
 	var file = path.join(phpdir, parts.pathname); 
 	
 	if(!fs.existsSync(file)){
-		file = path.join(phpdir, "index.php"); 
+		next();
+		return;
 	} else if(fs.statSync(file).isDirectory()){
 		file = path.join(file, "index.php"); 
 	}
